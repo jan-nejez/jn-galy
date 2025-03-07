@@ -19,9 +19,9 @@ Load the word embeddings for first million vectors from their binary form using 
 "
 ## Process data
 Calculate similarity of phrases in phrases.csv with each other:
-a) Assign each word in each phrase a Word2Vec embedding.
-b) Batch execution: Calculate L2 distance (Euclidean distance) or Cosine distance of each phrase to all other phrases and store results. Try to achieve this in a manner that is not compute or memory wasteful. Note that the whole phrase vector can be approximated by normalized sum of all the individual word tokens embeddings.
-c) On the fly execution: Create a function that takes any string, e.g. user-input phrase, and finds and return the closest match from phrases in phrases.csv and the distance
+- Assign each word in each phrase a Word2Vec embedding.
+- Batch execution: Calculate L2 distance (Euclidean distance) or Cosine distance of each phrase to all other phrases and store results. Try to achieve this in a manner that is not compute or memory wasteful. Note that the whole phrase vector can be approximated by normalized sum of all the individual word tokens embeddings.
+- On the fly execution: Create a function that takes any string, e.g. user-input phrase, and finds and return the closest match from phrases in phrases.csv and the distance
 ## Turn it into app
 Structure your code into modules. Use OOP programming principles. Prepare setup.py or project.toml, prepare pip or conda environment. Initialize logging. Add some error handling and argument validations.
 
@@ -30,13 +30,13 @@ Structure your code into modules. Use OOP programming principles. Prepare setup.
 Note: Not all bonus points are intented to be finished. Pick the ones you are confident completing within the agreed timeline. In case you find yourself wanting extra time to work on some of the bonus points, make sure to let your examiner know this is the case.
 
 Bonus Point description
-Provide commentary and ideas how to structure and optimise the code in the future.
-Process the data in chunks and in parallel by spinning up processes in parallel or by using a distributed processing framework (including the ones limited to a single node such as Polars)
-Write some unit tests and test that could server as an entrypoint into the app (pytest preferably)
-Structure code as pipeline step execution. Separate pipeline orchestration elements from data manipulation elements. Separate data manipulation from IO. Configure IO via configuration.
-Write an custom error handling decorator - raises an custom exception if code of the method raised an error. Include the previous errors in args. Annotate your methods with it instead of having try/except explicitly in your methods.
-In Step 1  clean duplicates, outliers and stopwords from the phrases. In cases where the exact match is not found in the list of words from word2vec set, use the Levenshtein distance to find the closest similar word and use its vector instead
-Prepare a docker file building the image hosting the python app with all dependencies. If you are using a DB for data storage, have a separate image for the database and provide docker compose file to spawn the app.
+- Provide commentary and ideas how to structure and optimise the code in the future.
+- Process the data in chunks and in parallel by spinning up processes in parallel or by using a distributed processing framework (including the ones limited to a single node such as Polars)
+- Write some unit tests and test that could server as an entrypoint into the app (pytest preferably)
+- Structure code as pipeline step execution. Separate pipeline orchestration elements from data manipulation elements. Separate data manipulation from IO. Configure IO via configuration.
+- Write an custom error handling decorator - raises an custom exception if code of the method raised an error. Include the previous errors in args. Annotate your methods with it instead of having try/except explicitly in your methods.
+- In Step 1  clean duplicates, outliers and stopwords from the phrases. In cases where the exact match is not found in the list of words from word2vec set, use the Levenshtein distance to find the closest similar word and use its vector instead
+- Prepare a docker file building the image hosting the python app with all dependencies. If you are using a DB for data storage, have a separate image for the database and provide docker compose file to spawn the app.
 
 # Result submission
 Ideally submit a python project in a git repo with commits documenting your progress (can be hosted in cloud or sent via email - GitHub/Bitbucket).
