@@ -4,3 +4,4 @@ BASE_DIR = Path(__file__).resolve().parent
 RAW_DATA_DIR = BASE_DIR / "data" / "raw"
 PREPROCESSED_DATA_DIR = BASE_DIR / "data" / "preprocessed"
 OUTPUT_DIR = BASE_DIR / "data" / "output"
+MODEL_PATH = PREPROCESSED_DATA_DIR / "vectors.csv"

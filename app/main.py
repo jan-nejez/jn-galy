@@ -1,9 +1,9 @@
 import os
 import pandas as pd
 from itertools import combinations
-from similarity import compare_phrases
-from vectorizer import load_model, vectorise_phrase
-from config import RAW_DATA_DIR, PREPROCESSED_DATA_DIR, OUTPUT_DIR
+from app.similarity import compare_phrases
+from app.vectorizer import load_model, vectorise_phrase
+from config import RAW_DATA_DIR, PREPROCESSED_DATA_DIR, OUTPUT_DIR, MODEL_PATH
 
 
 def preprocess_phrases(df: pd.DataFrame, model) -> pd.DataFrame:
@@ -13,14 +13,20 @@ def preprocess_phrases(df: pd.DataFrame, model) -> pd.DataFrame:
     return df
 
 
-def batch_execution():
+def load_phrases(model=None) -> pd.DataFrame:
     phrases_pkl_path = PREPROCESSED_DATA_DIR / 'phrases.pkl'
 
     if os.path.exists(phrases_pkl_path):
         df_phrases = pd.read_pickle(phrases_pkl_path)
     else:
-        model = load_model(PREPROCESSED_DATA_DIR / 'vectors.csv')
+        if model is None:
+            model = load_model(MODEL_PATH)
         df_phrases = preprocess_phrases(pd.read_csv(RAW_DATA_DIR / 'phrases.csv', encoding='latin1'), model)
+    return df_phrases
+
+
+def batch_execution():
+    df_phrases = load_phrases()
 
     pv = df_phrases.set_index("Phrases")["Vector"].to_dict()
     combo = combinations(pv.keys(), 2)

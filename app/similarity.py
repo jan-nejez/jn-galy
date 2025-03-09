@@ -1,5 +1,4 @@
 import numpy as np
-from vectorizer import vectorise_phrase
 
 
 def calculate_similarity(vector1: np.array, vector2: np.array, metric: str) -> float:
