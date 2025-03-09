@@ -7,14 +7,13 @@ from config import RAW_DATA_DIR, PREPROCESSED_DATA_DIR, OUTPUT_DIR
 
 
 def preprocess_phrases(df: pd.DataFrame, model) -> pd.DataFrame:
-    # vectorise phrases dataframe so that we can calculate similarity
-    # optionally will clean the dataframe, tokenize, remove stopwords, etc
+    # vectorise phrases dataframe so that we can calculate similarity and store it in a new column
     df['Vector'] = df['Phrases'].apply(lambda x: vectorise_phrase(x, model))
     df.to_pickle(PREPROCESSED_DATA_DIR / 'phrases.pkl')
     return df
 
 
-def main():
+def batch_execution():
     phrases_pkl_path = PREPROCESSED_DATA_DIR / 'phrases.pkl'
 
     if os.path.exists(phrases_pkl_path):
@@ -32,4 +31,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    batch_execution()
