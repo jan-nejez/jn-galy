@@ -1,3 +1,4 @@
 /ntb/.ipynb_checkpoints/
-/data/GoogleNews-vectors-negative300.bin.gz
+/data/raw/GoogleNews-vectors-negative300.bin.gz
+/data/preprocessed/
 *.pyc
