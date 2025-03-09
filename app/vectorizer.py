@@ -15,6 +15,8 @@ def get_word_vector(word: str, model: KeyedVectors):
 
 def vectorise_phrase(phrase: str, model: KeyedVectors):
     words = phrase.split()
+    # TODO tokenise phrase, dedup, handle stopwords, language detection TODO further future - lemmatization,
+    #  create exctractor for company names, business metrics, insdustry types, regions, etc
     vectors = [get_word_vector(word.lower(), model) for word in words]
     sum_vectors = np.sum([vector for vector in vectors if vector is not None], axis=0)
     return sum_vectors / np.linalg.norm(sum_vectors) if vectors else None
